@@ -5,6 +5,7 @@ import config.practical.utilities.DrawHelper;
 import config.practical.widgets.abstracts.ConfigChild;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 
@@ -62,9 +63,9 @@ class OptionsList <T> extends ConfigChild {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
-        int index =(int) (mouseY - getY()) / ELEMENT_HEIGHT;
+    public void onClick(Click click, boolean doubled) {
+        super.onClick(click, doubled);
+        int index =(int) (click.y() - getY()) / ELEMENT_HEIGHT;
         if (index < 0 || index >= options.length) return;
         consumer.accept(options[index]);
         parent.hideList();

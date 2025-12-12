@@ -4,6 +4,7 @@ import config.practical.utilities.Constants;
 import config.practical.utilities.DrawHelper;
 import config.practical.widgets.abstracts.ConfigChild;
 import net.minecraft.client.gl.RenderPipelines;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.util.Identifier;
@@ -42,15 +43,15 @@ class AlphaSlider extends ConfigChild {
     }
 
     @Override
-    protected void onDrag(double mouseX, double mouseY, double deltaX, double deltaY) {
-        super.onDrag(mouseX, mouseY, deltaX, deltaY);
-        setThumbPosition(mouseX);
+    protected void onDrag(Click click, double offsetX, double offsetY) {
+        super.onDrag(click, offsetX, offsetY);
+        setThumbPosition(click.x());
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
-        setThumbPosition(mouseX);
+    public void onClick(Click click, boolean doubled) {
+        super.onClick(click, doubled);
+        setThumbPosition(click.x());
     }
 
     public void setAlphaValue(int alphaValue) {

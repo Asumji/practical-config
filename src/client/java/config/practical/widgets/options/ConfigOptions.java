@@ -4,6 +4,7 @@ import config.practical.utilities.Constants;
 import config.practical.utilities.DrawHelper;
 import config.practical.widgets.abstracts.ConfigParent;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 
@@ -51,8 +52,8 @@ public class ConfigOptions<T> extends ConfigParent {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
+    public void onClick(Click click, boolean doubled) {
+        super.onClick(click, doubled);
         displayList = !displayList;
         update();
     }

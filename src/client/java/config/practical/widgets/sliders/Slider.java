@@ -4,6 +4,7 @@ import config.practical.utilities.Constants;
 import config.practical.utilities.DrawHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
@@ -87,25 +88,25 @@ public abstract class Slider extends ClickableWidget {
     }
 
     @Override
-    public void onRelease(double mouseX, double mouseY) {
-        super.onRelease(mouseX, mouseY);
+    public void onRelease(Click click) {
+        super.onRelease(click);
         isDragging = false;
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
-        if (insideSlider((int) mouseX, (int) mouseY)) {
+    public void onClick(Click click, boolean doubled) {
+        super.onClick(click, doubled);
+        if (insideSlider((int) click.x(), (int) click.y())) {
             isDragging = true;
-            updateThumbPos(mouseX);
+            updateThumbPos(click.x());
         }
     }
 
     @Override
-    protected void onDrag(double mouseX, double mouseY, double deltaX, double deltaY) {
-        super.onDrag(mouseX, mouseY, deltaX, deltaY);
+    protected void onDrag(Click click, double offsetX, double offsetY) {
+        super.onDrag(click, offsetX, offsetY);
         if (isDragging) {
-            updateThumbPos(mouseX);
+            updateThumbPos(click.x());
         }
     }
 

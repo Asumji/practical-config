@@ -1,6 +1,7 @@
 package config.practical.widgets.sliders;
 
 import config.practical.utilities.Constants;
+import net.minecraft.client.input.KeyInput;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
@@ -44,19 +45,19 @@ public class ConfigDouble extends Slider {
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+    public boolean keyPressed(KeyInput input) {
 
-        if (keyCode == GLFW.GLFW_KEY_LEFT) {
+        if (input.getKeycode() == GLFW.GLFW_KEY_LEFT) {
             consumer.accept(Math.max(supplier.get() - step, min));
             updateThumbPosWithDelta((float)((supplier.get() - min) / (max - min)));
             return true;
-        } else if (keyCode == GLFW.GLFW_KEY_RIGHT) {
+        } else if (input.getKeycode() == GLFW.GLFW_KEY_RIGHT) {
             consumer.accept(Math.min(supplier.get() + step, max));
             updateThumbPosWithDelta((float)((supplier.get() - min) / (max - min)));
             return true;
         }
 
-        return super.keyPressed(keyCode, scanCode, modifiers);
+        return super.keyPressed(input);
     }
 
 }

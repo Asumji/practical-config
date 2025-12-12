@@ -6,6 +6,8 @@ import config.practical.widgets.abstracts.ConfigChild;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
+import net.minecraft.client.input.CharInput;
+import net.minecraft.client.input.KeyInput;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.Set;
@@ -25,18 +27,18 @@ class HexInput extends ConfigChild {
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (keyCode == GLFW.GLFW_KEY_BACKSPACE && !text.isEmpty()) {
+    public boolean keyPressed(KeyInput input) {
+        if (input.getKeycode() == GLFW.GLFW_KEY_BACKSPACE && !text.isEmpty()) {
             text = text.substring(0, text.length() - 1);
         }
 
-        return super.keyPressed(keyCode, scanCode, modifiers);
+        return super.keyPressed(input);
     }
 
     @Override
-    public boolean charTyped(char chr, int modifiers) {
-        if (ALLOWED_CHARS.contains(chr) && text.length() < 6) {
-            text += (chr + "").toUpperCase();
+    public boolean charTyped(CharInput input) {
+        if (ALLOWED_CHARS.contains(Character.toChars(input.codepoint())[0]) && text.length() < 6) {
+            text += (Character.toChars(input.codepoint())[0] + "").toUpperCase();
         }
 
         if (text.length() == 6) {
@@ -47,7 +49,7 @@ class HexInput extends ConfigChild {
             }
         }
 
-        return super.charTyped(chr, modifiers);
+        return super.charTyped(input);
     }
 
     public void updateText(int color) {

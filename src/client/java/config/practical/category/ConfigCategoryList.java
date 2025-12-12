@@ -2,6 +2,7 @@ package config.practical.category;
 
 import config.practical.ConfigurableScreen;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
@@ -49,7 +50,7 @@ public class ConfigCategoryList extends ClickableWidget {
         for (int i = 0; i < categories.size(); i++) {
 
             ConfigCategory category = categories.get(i);
-            context.drawBorder(x, y + i * CATEGORY_HEIGHT, width, CATEGORY_HEIGHT, (category == selected ? SELECTED_COLOR : UNSELECTED_COLOR));
+            //context.drawBox(x, y + i * CATEGORY_HEIGHT, width, CATEGORY_HEIGHT, (category == selected ? SELECTED_COLOR : UNSELECTED_COLOR));
 
             String name = category.name;
 
@@ -60,8 +61,8 @@ public class ConfigCategoryList extends ClickableWidget {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        int index = (int) ((mouseY - getY()) / CATEGORY_HEIGHT);
+    public void onClick(Click click, boolean doubled) {
+        int index = (int) ((click.y() - getY()) / CATEGORY_HEIGHT);
 
         if (index < categories.size() && index > -1) {
             selected = categories.get(index);

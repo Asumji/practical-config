@@ -3,6 +3,7 @@ package config.practical.screenwidgets;
 import config.practical.hud.ComponentEditScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
@@ -40,7 +41,7 @@ public class ConfigHudEdit extends ClickableWidget {
         Text message = getMessage();
 
         context.fill(x, y, x + WIDTH, y + HEIGHT, BACKGROUND_COLOR);
-        context.drawBorder(x, y, WIDTH, HEIGHT, this.isFocused() ? WHITE_COLOR : BLACK_COLOR);
+        //context.drawBorder(x, y, WIDTH, HEIGHT, this.isFocused() ? WHITE_COLOR : BLACK_COLOR);
 
         int textWidth = textRenderer.getWidth(message);
 
@@ -48,7 +49,7 @@ public class ConfigHudEdit extends ClickableWidget {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
+    public void onClick(Click click, boolean doubled) {
         MinecraftClient.getInstance().setScreen(new ComponentEditScreen(screen));
     }
 

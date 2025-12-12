@@ -70,7 +70,7 @@ public class ConfigScroll extends ContainerWidget {
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-        this.drawScrollbar(context);
+        this.drawScrollbar(context, mouseX, mouseY);
 
         int x = getX();
         int y = getY();

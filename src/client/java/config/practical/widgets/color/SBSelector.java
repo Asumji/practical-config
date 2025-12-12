@@ -4,6 +4,7 @@ import config.practical.utilities.Constants;
 import config.practical.widgets.abstracts.ConfigChild;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.texture.NativeImage;
@@ -60,11 +61,11 @@ class SBSelector extends ConfigChild {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
+    public void onClick(Click click, boolean doubled) {
+        super.onClick(click, doubled);
 
-        float saturation = Math.clamp((float) (mouseX - getX() - Constants.LINE_THICKNESS) / (float) SPRITE_SIZE, 0f, 1f);
-        float brightness = 1 - Math.clamp((float) (mouseY - getY() - Constants.LINE_THICKNESS) / (float) SPRITE_SIZE, 0f, 1f);
+        float saturation = Math.clamp((float) (click.x() - getX() - Constants.LINE_THICKNESS) / (float) SPRITE_SIZE, 0f, 1f);
+        float brightness = 1 - Math.clamp((float) (click.y() - getY() - Constants.LINE_THICKNESS) / (float) SPRITE_SIZE, 0f, 1f);
 
         parent.setSBValue(saturation, brightness);
     }
