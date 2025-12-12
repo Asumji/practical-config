@@ -107,7 +107,7 @@ public class ComponentEditScreen extends Screen {
         if (isDragging && selected != null) {
             assert client != null;
             Window window = client.getWindow();
-            selected.move(offsetY / window.getScaledWidth(), offsetX / window.getScaledHeight());
+            selected.move(offsetX / window.getScaledWidth(), offsetY / window.getScaledHeight());
         }
         return super.mouseDragged(click, offsetX, offsetY);
     }
