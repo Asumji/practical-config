@@ -40,7 +40,7 @@ public class ConfigCategoryList extends ClickableWidget {
         int x = getX();
         int y = getY();
 
-        //context.enableScissor(x, y, x + width, y + height);
+        context.enableScissor(x, y, x + width, y + height);
         context.fill(x, y, x + width, y + height, BACKGROUND_COLOR);
 
         TextRenderer renderer = screen.getTextRenderer();
